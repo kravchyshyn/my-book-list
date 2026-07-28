@@ -41,10 +41,6 @@ export class BookListComponent {
     this.booksService.deleteBook(id);
   }
 
-  editBook(id: string) {
-    console.log('edit', id);
-  }
-
   saveBooks() {
     this.xmlService.exportXml(this.books());
   }

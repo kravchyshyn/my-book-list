@@ -60,6 +60,16 @@
       }
     }
 
+    .book-title {
+      color: var(--mat-sys-primary);
+      font-weight: 600;
+    }
+
+    .book-author {
+      font-style: italic;
+      color: var(--mat-sys-primary);
+    }
+
     .search-container {
 
     }
