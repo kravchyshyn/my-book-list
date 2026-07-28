@@ -39,13 +39,5 @@ export class AddBookComponent {
 
     this.booksService.addBook(this.form.value as IBookPayload);
     this.router.navigate(['/book-list']);
-
-
-
-    // this.form.reset({
-    //   bookTitle: '',
-    //   bookAuthor: '',
-    //   pages: 1
-    // })
   }
 }

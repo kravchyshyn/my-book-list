@@ -1,0 +1,23 @@
+:host {
+  color: var(--mat-sys-primary);
+
+  .container {
+    display: flex;
+    height: 50px;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: flex-end;
+    }
+  }
+}

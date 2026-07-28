@@ -7,6 +7,10 @@ import { IBook, IBookPayload } from '../models/books.model';
 export class BooksService {
   books = signal<IBook[]>([]);
 
+  setBooks(books: IBook[] = []) {
+    this.books.set(books);
+  }
+
   addBook(book: IBookPayload) {
     this.books.update(
       books => [...books, {
@@ -28,5 +32,9 @@ export class BooksService {
     this.books.update(books =>
       books.filter(book => book.id !== id)
     );
+  }
+
+  clearBooksList(): void {
+    this.books.set([]);
   }
 }

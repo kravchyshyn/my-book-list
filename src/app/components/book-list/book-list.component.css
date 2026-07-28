@@ -1,13 +1,67 @@
 :host {
+  color: var(--mat-sys-primary);
+
   .container {
     display: flex;
     flex-direction: column;
     max-width: 800px;
     margin: 2rem auto;
 
-    .add-button {
-      align-self: end;
-      max-width: 200px;
+    .empty-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 500px;
+
+      .empty-container-actions {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        font-size: 1.5rem;
+        color: var(--mat-sys-primary);
+      }
+
+      .book-icon {
+        font-size: 4rem;
+        height: 4rem;
+        width: 4rem;
+      }
+
+      span {
+        margin: 2rem;
+        font-size: 2rem;
+        line-height: 2;
+        font-weight: 700;
+      }
+    }
+
+    .main-actions-container {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 1rem;
+      margin: 2rem 0;
+      color: var(--mat-sys-primary);
+    }
+
+    .mat-column-pages,
+    .mat-column-actions {
+      width: 150px;
+      max-width: 150px;
+      text-align: center;
+
+      .actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+      }
+    }
+
+    .search-container {
+
     }
   }
 }

@@ -3,8 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () =>
-      import('./components/home/home.component').then(m => m.HomeComponent),
+    pathMatch: 'full',
+    redirectTo: 'book-list',
   },
   {
     path: 'book-list',
@@ -15,10 +15,5 @@ export const routes: Routes = [
     path: 'add-book',
     loadComponent: () =>
       import('./components/add-book/add-book.component').then(m => m.AddBookComponent),
-  },
-  {
-    path: 'edit-book',
-    loadComponent: () =>
-      import('./components/edit-book/edit-book.component').then(m => m.EditBookComponent),
   },
 ];

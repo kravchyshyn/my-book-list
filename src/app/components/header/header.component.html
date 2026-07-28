@@ -1,0 +1,31 @@
+<div class="container">
+  <span>
+  My home library
+</span>
+
+  <div class="header-actions">
+    <input
+      #fileInput
+      type="file"
+      accept=".xml"
+      (change)="importBooks($event)"
+      hidden>
+
+    <button
+      mat-stroked-button
+      color="primary"
+      (click)="fileInput.click()">
+      <mat-icon>upload</mat-icon>
+      Import books from XML
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="openAddDialog()"
+    >
+      Add Book
+    </button>
+  </div>
+
+</div>

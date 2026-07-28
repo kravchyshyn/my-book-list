@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>
+  {{ isEditMode ? 'Edit Book' : 'Add Book' }}
+</h2>
+
+<mat-dialog-content>
+
+  <form [formGroup]="form" class="book-form">
+    <mat-form-field>
+      <mat-label>Book Title</mat-label>
+      <input matInput formControlName="bookTitle">
+
+      @if (form.controls.bookTitle.hasError('required')) {
+        <mat-error>Book title is required</mat-error>
+      }
+
+      @if (form.controls.bookTitle.hasError('minlength')) {
+        <mat-error>
+          Book title must be at least 3 characters long.
+        </mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Book Author</mat-label>
+      <input matInput formControlName="bookAuthor">
+
+      @if (form.controls.bookAuthor.hasError('required')) {
+        <mat-error>Book author is required</mat-error>
+      }
+
+      @if (form.controls.bookAuthor.hasError('minlength')) {
+        <mat-error>
+          Book author must be at least 3 characters long.
+        </mat-error>
+      }
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Pages</mat-label>
+      <input
+        matInput
+        type="number"
+        min="1"
+        formControlName="pages">
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button
+    mat-button
+    (click)="dismiss()">
+    Dismiss
+  </button>
+
+  <button
+    mat-flat-button
+    color="primary"
+    (click)="save()"
+    [disabled]="form.invalid">
+    {{ isEditMode ? 'Save Changes' : 'Add Book' }}
+  </button>
+
+</mat-dialog-actions>
