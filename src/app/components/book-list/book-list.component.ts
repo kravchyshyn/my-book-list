@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { BookFormComponent } from '../book-form/book-form.component';
 import { XmlService } from '../../services/xml.service';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-book-list',
@@ -16,7 +18,9 @@ import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
     MatTableModule,
     MatButtonModule,
     MatIconModule,
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css',
@@ -47,6 +51,9 @@ export class BookListComponent {
     });
 
     this.dataSource.sortData = this.sortBooks.bind(this);
+
+    this.dataSource.filterPredicate = (book, filter) =>
+      book.bookTitle.toLowerCase().includes(filter);
   }
 
   openEditDialog(book: IBook): void {
@@ -76,6 +83,10 @@ export class BookListComponent {
     this.xmlService.importXml(event);
   }
 
+  searchBooks(value: string): void {
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
+
   private sortBooks(data: IBook[], sort: Sort): IBook[] {
     if (sort.active !== 'bookAuthor' || !sort.direction) {
       return [...data];
@@ -83,32 +94,16 @@ export class BookListComponent {
 
     const direction: 1 | -1 = sort.direction === 'asc' ? 1 : -1;
 
-    return [...data].sort((a, b) =>
-      this.compareBooks(a, b, direction),
-    );
+    return [...data].sort((a, b) => this.compareBooks(a, b, direction));
   }
 
-  private compareBooks(
-    a: IBook,
-    b: IBook,
-    direction: 1 | -1,
-  ): number {
-    const author = a.bookAuthor.localeCompare(
-      b.bookAuthor,
-      undefined,
-      { sensitivity: 'base' },
-    );
+  private compareBooks(a: IBook, b: IBook, direction: 1 | -1): number {
+    const author = a.bookAuthor.localeCompare(b.bookAuthor, undefined, { sensitivity: 'base' });
 
     if (author !== 0) {
       return author * direction;
     }
 
-    return (
-      a.bookTitle.localeCompare(
-        b.bookTitle,
-        undefined,
-        { sensitivity: 'base' },
-      ) * direction
-    );
+    return a.bookTitle.localeCompare(b.bookTitle, undefined, { sensitivity: 'base' }) * direction;
   }
 }

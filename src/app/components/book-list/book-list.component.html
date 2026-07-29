@@ -1,7 +1,4 @@
 <div class="container">
-  <div class="search-container">
-  </div>
-
   @if (books().length === 0) {
     <div class="empty-container">
       <mat-icon class="book-icon">menu_book</mat-icon>
@@ -34,6 +31,20 @@
     </div>
 
   } @else {
+    <div class="search-container">
+      <mat-form-field appearance="outline">
+        <mat-label>Search book by title</mat-label>
+
+        <input
+          matInput
+          #search
+          placeholder="Start typing a book title..."
+          (input)="searchBooks(search.value)" />
+
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
     <table
       mat-table
       [dataSource]="dataSource"
