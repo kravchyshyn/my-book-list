@@ -51,17 +51,15 @@ export class XmlService {
     const booksXml = books
       .map(
         (book) => `
-  <book id="${book.id}">
-    <title>${escapeText(book.bookTitle)}</title>
-    <author>${escapeText(book.bookAuthor)}</author>
-    <pages>${book.pages}</pages>
-  </book>`,
+        <book id="${book.id}">
+          <title>${escapeText(book.bookTitle)}</title>
+          <author>${escapeText(book.bookAuthor)}</author>
+          <pages>${book.pages}</pages>
+        </book>`,
       )
       .join('');
 
-    return `<?xml version="1.0" encoding="UTF-8"?>
-<books>${booksXml}
-</books>`;
+    return `<?xml version="1.0" encoding="UTF-8"?><books>${booksXml}</books>`;
   }
 
   private parseXml(xml: string): IBook[] {

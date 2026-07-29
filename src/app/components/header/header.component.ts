@@ -4,10 +4,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { XmlService } from '../../services/xml.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
@@ -22,6 +23,6 @@ export class HeaderComponent {
   }
 
   importBooks(event: Event) {
-    this.xmlService.importXml(event)
+    this.xmlService.importXml(event);
   }
 }
