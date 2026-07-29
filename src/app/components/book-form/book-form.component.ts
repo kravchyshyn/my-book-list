@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { IBook, IBookPayload } from '../../models/books.model';
+import { noWhitespaceValidator } from '../../validators/nowhitespace.validator';
 
 @Component({
   selector: 'app-book-form',
@@ -27,8 +28,8 @@ export class BookFormComponent implements OnInit {
   readonly data = inject(MAT_DIALOG_DATA, { optional: true }) as IBook | null;
 
   form = this.fb.group({
-    bookTitle: ['', [Validators.required, Validators.minLength(3)]],
-    bookAuthor: ['', [Validators.required, Validators.minLength(3)]],
+    bookTitle: ['', [Validators.required, Validators.minLength(3), noWhitespaceValidator]],
+    bookAuthor: ['', [Validators.required, Validators.minLength(3), noWhitespaceValidator]],
     pages: [1, [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)]],
   });
 

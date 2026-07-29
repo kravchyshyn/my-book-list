@@ -6,26 +6,22 @@ import { MatButtonModule } from '@angular/material/button';
 import { BooksService } from '../../services/books.service';
 import { IBookPayload } from '../../models/books.model';
 import { Router } from '@angular/router';
+import { noWhitespaceValidator } from '../../validators/nowhitespace.validator';
 
 @Component({
   selector: 'app-add-book',
-  imports: [
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-  ],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
   templateUrl: './add-book.component.html',
   styleUrl: './add-book.component.css',
 })
 export class AddBookComponent {
   private fb = inject(FormBuilder);
   private booksService = inject(BooksService);
-  private router = inject(Router)
+  private router = inject(Router);
 
   form = this.fb.group({
-    bookTitle: ['', [Validators.required, Validators.minLength(3)]],
-    bookAuthor: ['', [Validators.required, Validators.minLength(3)]],
+    bookTitle: ['', [Validators.required, Validators.minLength(3), noWhitespaceValidator]],
+    bookAuthor: ['', [Validators.required, Validators.minLength(3), noWhitespaceValidator]],
     pages: [1, [Validators.required, Validators.min(1), Validators.pattern(/^\d+$/)]],
   });
 

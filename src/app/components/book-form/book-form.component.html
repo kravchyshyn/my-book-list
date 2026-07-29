@@ -13,6 +13,12 @@
         <mat-error>Book title is required</mat-error>
       }
 
+      @if (form.controls.bookTitle.hasError('whitespace')) {
+        <mat-error>
+          Book title cannot contain only spaces.
+        </mat-error>
+      }
+
       @if (form.controls.bookTitle.hasError('minlength')) {
         <mat-error>
           Book title must be at least 3 characters long.
@@ -26,6 +32,12 @@
 
       @if (form.controls.bookAuthor.hasError('required')) {
         <mat-error>Book author is required</mat-error>
+      }
+
+      @if (form.controls.bookAuthor.hasError('whitespace')) {
+        <mat-error>
+          Book author cannot contain only spaces.
+        </mat-error>
       }
 
       @if (form.controls.bookAuthor.hasError('minlength')) {
